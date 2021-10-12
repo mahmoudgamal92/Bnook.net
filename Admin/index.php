@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+ include '../components/dbconnect.php';
  if(!isset($_SESSION['Admin_name']))
  {
   header("Location: login.php");
@@ -41,7 +41,7 @@ session_start();
 <body>
 
  <?php
- include 'side_nav.php';
+ include 'components/sidebar.php';
  ?>
 
       <div class="container-fluid">
@@ -68,7 +68,8 @@ session_start();
             </a>
           </div>
           <div class=" col-md-3 users">
-            <a onclick="window.location.href ='users.php'"><img src="images/team.png" style="width: 60%; height:60%;">
+            <a onclick="window.location.href ='users.php'">
+            <img src="images/team.png" style="width: 60%; height:60%;">
               <p>
               المستخدمين
             </p>
@@ -84,18 +85,16 @@ session_start();
             }
                echo $usrs;
             ?>
-
             </p>
             </a>
-
           </div>
           <div class="col-md-3 Admins">
-            <a href="add_editor.php"><img src="images/wrench.png" style="width: 80%; height:80%;">
+            <a href="trend.php">
+              <img src="images/trend.png" style="width: 80%; height:80%;">
               <p>
-             اضافه محللين
+           تريند الأسهم الأكثر بحثا
             </p>
             </a>
-
           </div>
         </div>
       <!--- Power Users Row---->

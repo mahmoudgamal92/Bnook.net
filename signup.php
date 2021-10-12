@@ -7,7 +7,8 @@ $password = md5($_POST['pwd']);
 $register_date = date("Y-m-d") ;
 
 $token = uniqid();
-$cmd="insert into users (user_name, email, phone, password, register_date) values ('$full_name','$email','$phone','$password','$register_date')";
+$cmd="insert into users (user_name, email, phone, password, register_date) values 
+('$full_name','$email','$phone','$password','$register_date')";
 if (mysqli_query($con,$cmd))
 {
     header("Location:./index.php?registered=true");

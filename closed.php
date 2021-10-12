@@ -124,7 +124,6 @@
  <div style="padding-top:200px;text-align:center">
      <p style="padding:20px;background-color:red;border-radius:15px 50px;width:70%;margin-bottom:250px;margin-top:100px;display:inline-block;color:#FFF">
       الموقع مغلق للصيانة ونفيدكم أن السوق مغلق يوم الاثنين بمناسبة "عيد العمال"
-
           </p>
          </div>
     <!-- Footer start -->

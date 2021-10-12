@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 
 <?php 
@@ -88,7 +88,7 @@ $data = mysqli_fetch_array($result);
     <body>
     
         <?php
-     include 'side_nav.php';
+     include 'components/sidebar.php';
      ?>
     <div class="container-fluid">
         <div style="text-align:center">

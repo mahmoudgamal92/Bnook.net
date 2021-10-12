@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 
 <?php
@@ -107,7 +107,7 @@ mysqli_close($con);
     <body>
     
         <?php
-     include 'side_nav.php';
+     include 'components/sidebar.php';
      ?>
     <div class="container-fluid">
         <div style="text-align:center">

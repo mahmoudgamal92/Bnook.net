@@ -29,3 +29,9 @@
          <span>12042949</span>
         </p>
     </footer>
+
+    <section class="diffrents">
+        <button class="btn-up">
+            <img src="./images/up_arrow.png" style="width:50px;height:50px"/>
+            </button>
+      </section>

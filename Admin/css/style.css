@@ -29,9 +29,6 @@ a{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
   transition: width 2s, height 2s, transform 2s;
 }
-.visitors:hover {
-  transform: rotate(360deg);
-}
 
 .users{
 
@@ -45,9 +42,7 @@ padding: 10px;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
 transition: width 2s, height 2s, transform 2s;
 }
-.users:hover {
-  transform: rotate(360deg);
-}
+
 .Articles{
 
 
@@ -62,9 +57,7 @@ transition: width 2s, height 2s, transform 2s;
   transition: width 2s, height 2s, transform 2s;
 }
 
-.Articles:hover {
-  transform: rotate(360deg);
-}
+
 .problems{
 
   background-color: #DAE0E5;
@@ -77,9 +70,7 @@ transition: width 2s, height 2s, transform 2s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
   transition: width 2s, height 2s, transform 2s;
 }
-.problems:hover {
-  transform: rotate(360deg);
-}
+
 .Admins{
 
   background-color: #FA897B;
@@ -93,11 +84,8 @@ transition: width 2s, height 2s, transform 2s;
   transition: width 2s, height 2s, transform 2s;
 
 }
-.Admins:hover {
-  transform: rotate(360deg);
-}
-.contact{
 
+.contact{
   background-color: #CCABDA;
   height: 200px;
   margin: 40px;
@@ -109,9 +97,10 @@ transition: width 2s, height 2s, transform 2s;
   transition: width 2s, height 2s, transform 2s;
 
 }
-.contact:hover {
+/* .contact:hover {
   transform: rotate(360deg);
-}
+} */
+
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;

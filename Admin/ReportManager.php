@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,21 +33,16 @@ session_start();
   <link href="css/style.css" rel="stylesheet">
 
 </head>
-
 <body>
-
   <?php
-  include 'side_nav.php'
+  include 'components/sidebar.php';
   ?>
       <div class="container-fluid">
         <div class="row">
           <div class=" col-md-3 visitors">
             <a onclick="window.location.href ='Add_Report.php'">
             <img src="images/team.png" style="width: 60%; height:60%;">
-                        <p>
-                    اضافة تقرير          
-                        </p>
-           
+                        <p>اضافة تقرير</p>
             </a>
           </div>
           <div class=" col-md-3 users">

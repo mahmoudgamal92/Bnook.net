@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +31,9 @@ session_start();
   <link href="css/style.css" rel="stylesheet">
 <style>
           
-          table {
-  border-collapse: collapse;
-  width: 50%;
+ table {
+border-collapse: collapse;
 margin: 0px auto;
-
 }
 th, td {
 	color : black;
@@ -51,30 +49,45 @@ tr:hover {background-color:#2ec66d;}
 </head>
 <body>
  <?php
- include 'side_nav.php';
+ include 'components/sidebar.php';
  ?>
-      <div class="container-fluid">
-      <table>
+  <div class="container-fluid">
+    
+  <table>
  <tr>
   <th>Id</th> 
-  <th>name</th> 
-  <th>mail</th>
-  <th>password</th>
+  <th>User Name</th> 
+  <th>User Email</th>
+  <th>User Phone</th>
+  <th>Current Plan</th>
+  <th>Register Date</th>
+  <th>Action</th>
+
  </tr>
+
  <?php 
-  $sql = "SELECT id,username, mail, password FROM users";
+  $sql = "select * from users";
   $result = $con->query($sql);
-  if ($result->num_rows > 0) {
-   // output data of each row
    while($row = $result->fetch_assoc()) {
-    echo "<tr><td>" . $row["id"]. "</td><td>" . $row["username"] . "</td><td>"
-. $row["mail"]. "</td><td>" .md5($row["password"]). "</td></tr>";
-}
-echo "</table>";
-} else { echo "0 results"; }
-$con->close();
-?>
-</table>
+     ?>
+
+
+ <tr>
+ <td><?php echo $row['id']; ?></td> 
+ <td><?php echo $row['user_name']; ?></td> 
+ <td><?php echo $row['email']; ?></td> 
+ <td><?php echo $row['phone']; ?></td> 
+ <td><?php echo $row['current_plan']; ?></td> 
+ <td><?php echo $row['register_date']; ?></td> 
+ <td>
+   <button class="btn btn-success">delete</button>
+ </td> 
+
+ </tr>
+<?php
+   }
+   ?>
+   </table>
       </div>
     </div>
     <!-- /#page-content-wrapper -->

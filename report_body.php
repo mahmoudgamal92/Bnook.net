@@ -1,8 +1,7 @@
 <?php
-include_once 'DBconnect.php'
+session_start();
+include_once 'components/dbconnect.php';
 ?>
-
-
 <?php
 $id = $_GET['id'];
 $cmd = "select * from articles where article_id = '$id'";
@@ -121,7 +120,7 @@ $row = mysqli_fetch_array($result);
     <div class="header">
         <div class="layout">
             <?php
-include 'navbar.php';
+include 'components/navbar.php';
      ?>
         </div>
 
@@ -139,7 +138,7 @@ include 'navbar.php';
             if($row['images'] != null)
             {
               echo '<div class="fakeimg"><img src="uploads/'.$row['images'].'" 
-              style="width:80%;border-radius:15px;height:300px;"></div>';
+              style="width:80%;border-radius:5px;"></div>';
             }
             else{
           echo '<div class="fakeimg"><img src="images/bnookbanner.png" 
@@ -157,36 +156,9 @@ include 'navbar.php';
         </div>
     </section>
 
-    <!-- Footer start -->
-    <footer class="dl-pt-50 text-center">
-        <a href="#"><img src="./images//logo.png" alt=""></a>
-        <ul class="list-unstyled dl-mt-20">
-            <li>
-                <a href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-        </ul>
-        <p>©2019 BNOOK - All right reserved | Designed by BNOOK Team, CompanyNumber: <span>12042949</span></p>
-    </footer>
-    <section class="diffrents">
-        <button class="btn-up"><i class="fas fa-angle-up"></i></button>
-    </section>
-    <!-- Footer end -->
+    <?php
+    include 'components/footer.php';
+    ?>
 
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>

@@ -1,5 +1,9 @@
+
 <?php
-include 'DBconnect.php';
+session_start();
+include_once 'components/dbconnect.php';
+?>
+<?php
 $symbol = strtoupper($_POST['symbol']);
 $link = "https://ar.tradingview.com/symbols/".$symbol."/";
 $json_params = $symbol;
@@ -261,7 +265,7 @@ $On_7th_Day_Price_Change5 = $data['5']['2']['On 7th Day Price Change (%)'];
     <div class="header">
       <div class="layout">
      <?php
-    include 'navbar.php';   
+    include 'components/navbar.php';   
      ?> 
     </div>
           </div>
@@ -909,13 +913,11 @@ text-align:center">اراء المحللين</p>
           <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
         </div>
       </div>
+      </div>
             <?php
-           include 'footer.php';
+           include 'components/footer.php';
             ?>
-            
-    <section class="diffrents">
-      <button class="btn-up"><i class="fas fa-angle-up"></i></button>
-  </section>
+
     <!-- Footer end -->
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>

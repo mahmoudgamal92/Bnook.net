@@ -1,6 +1,10 @@
 <?php
 session_start();
 include '../components/dbconnect.php';
+ if(!isset($_SESSION['Admin_name']))
+ {
+  header("Location: login.php");
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,25 +34,7 @@ include '../components/dbconnect.php';
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
-<style>
 
-<style>
-            table {
-    border-collapse: collapse;
-    width: 100%;
-  margin: 0px auto;
-  }
-  th, td {
-      color : black;
-      font-weight: bold;
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-    text-align:center;
-    
-  }              
-          </style>
-</style>
 </head>
 
 <body>
@@ -56,32 +42,35 @@ include '../components/dbconnect.php';
  <?php
  include 'components/sidebar.php';
  ?>
-      <div class="container-fluid">
-      <table>
- <tr>
-  <th style="width:20%"> title </th> 
-  <th style="width:10%"> Date </th>
- <th style="width:10%"> Edit </th>
-  <th style="width:10%"> Delete </th>
 
- </tr>
- 
- <?php
-  $sql = "SELECT id,title, content, date FROM news order by id desc";
-  $result = $con->query($sql);
-  if ($result->num_rows > 0) {
-   // output data of each row
-   while($row = $result->fetch_assoc()) {
-    echo "<tr><td style='text-align:right;font-size:24px'>" . $row["title"] . "</td><td>" .$row["date"]. "</td>" .
-    "<td><button class='btn btn-success'><a style='color:white' href='edit_news.php?id=".$row["id"]."'>Edit</a></button></td>".
-    "<td><button class='btn btn-danger'><a style='color:white' href='delete_news.php?id=".$row["id"]."'>delete</a></button></td>".
-    "</tr>";
-}
-echo "</table>";
-} else { echo "0 results"; }
-$con->close();
-?>
-</table>
+       <div class="container-fluid">
+      
+     
+      
+     <div class="row">
+
+      
+     <div class=" col-md-3 problems">
+        <a onclick="window.location.href ='add_trend.php'">
+        <img src="./images/add.png" style="width: 50%; height:60%;">
+       <p>
+         أضافة تريند
+       </p>
+        </a>
+      </div>  
+         
+      <div class=" col-md-3 problems">
+        <a onclick="window.location.href ='trend_list.php'">
+        <img src="./images/stock.png" style="width: 50%; height:60%;">
+                <p>
+                  عرض التريند
+               </p>
+        </a>
+
+      </div>
+     
+     </div>
+     
       </div>
     </div>
     <!-- /#page-content-wrapper -->

@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+include_once 'components/dbconnect.php';
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -51,7 +56,7 @@ font-family: 'Reem Kufi', sans-serif;
     <div class="header">
       <div class="layout">
      <?php
-include 'navbar.php';
+include 'components/navbar.php';
      ?>
 
 
@@ -60,11 +65,9 @@ include 'navbar.php';
       </div>
 
 
-      <div style="width: 100%;text-align: center;padding-top:120px">
+      <div class="container" style="width:100%;text-align: center;padding-top:120px">
 
         <div style="display: inline block;margin-top:20px">
-
-
             <h1 class="heading">أسعار الذهب و المعادن</h1>
 
 <!-- TradingView Widget BEGIN -->
@@ -134,34 +137,7 @@ include 'navbar.php';
     </section>
     <!-- Section Get in touch end -->  
     <!-- Footer start -->
-    <footer class="dl-pt-50 text-center">
-      <a href="#"><img src="./images//logo.png" alt=""></a>
-      <ul class="list-unstyled dl-mt-20">
-        <li>
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fab fa-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-      </ul>
-      <p>©2019 BNOOK - All right reserved | Designed by BNOOK Team, CompanyNumber: <span>12042949</span></p>
-    </footer>
-    <section class="diffrents">
-      <button class="btn-up"><i class="fas fa-angle-up"></i></button>
-  </section>
+  <?php include 'components/footer.php' ?>
     <!-- Footer end -->
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>

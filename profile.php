@@ -2,8 +2,15 @@
 session_start();
 include_once 'components/dbconnect.php';
 ?>
+<?php
+$user_id = $_SESSION['user_id'];
+$cmd = "select * from users where id = '$user_id'";
+$result = mysqli_query($con,$cmd);
+$row = mysqli_fetch_array($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dl.helper.css">
@@ -27,6 +34,7 @@ include_once 'components/dbconnect.php';
     <link href="https://fonts.googleapis.com/css?family=Acme|Allan&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lemonada|Reem+Kufi|Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
+
     <!----------------google font arabic--------------->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
@@ -45,8 +53,6 @@ include_once 'components/dbconnect.php';
 
     * {
         font-family: Greta_Arabic !important;
-          text-decoration: none !important;
-
     }
 
     .leftcolumn {
@@ -109,59 +115,91 @@ include_once 'components/dbconnect.php';
     <div class="header">
         <div class="layout">
             <?php
-include 'components/navbar.php';
+      include 'components/navbar.php';
      ?>
         </div>
     </div>
-    <div style="padding-top:120px">
-    </div>
-    <?php
-          $sql="select * from articles order by article_id desc limit 20 ";
-          $result = mysqli_query($con,$sql);
-          while($row = mysqli_fetch_array($result)){
-          ?>
-    <div class="row" style="padding:10px;mergin-bottom:10px">
-        <div class="col-lg-10 col-md-10 col-sm-10">
-            <h2 style="text-align:right;font-family: 'Cairo', sans-serif;color:#1f4e83;">
-                <a href='report_body.php?id=<?php echo $row['article_id'] ?>'>
-                    <?php  echo $row['title']; ?>
-                </a>
-            </h2>
-            <div style="text-align:right;font-family:'Cairo', sans-serif;">
-                <?php echo htmlspecialchars_decode(substr($row['content'],0,600)); ?>
-                <?php //echo $row['subtitle']; ?>
-                <br>
-                <span style="color:grey">
-                    <a href='report_body.php?id=<?php echo $row['article_id'] ?>'>
-                        .....أضغط لعرض المزيد</a>
-                </span>
-                <span style="float:left;color:#1f4e83;">
-                    <img src="images/date.png" style="width:25px;">
-                    <?php echo $row['date']; ?>
-                </span>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <?php
-            if($row['images'] != null)
-            {
-              echo '<img src="uploads/'.$row['images'].'" style="width:100%;height:90%;max-height:200px;border: 1px solid #ddd;
-              border-radius: 4px;">';
-            }
-            else{
-          echo '<img src="images/bnookbanner.png" 
-          style="width:100%;border-radius:15px;">';
+      <section class="contact dl-pt-150">
+        <form>
+          <h2 class="text-center h1" style="
+          font-family: 'Harmattan', sans-serif;
+          font-family: 'Lalezar', cursive;
+          font-family: 'Mada', sans-serif;
+          font-family: 'Changa', sans-serif;
+          color:  #00e6ac ;">
+         الحساب الشخصي
+          </h2>
+          <div class="container">
 
-            }
-            ?>
-        </div>
-    </div>
-    <?php 
-              } 
-              ?>
-<?php
-include 'components/footer.php';
-?>
+
+            <div class="row" style="direction:rtl">
+              <div class="col-md-6 dl-mb-10">
+              <label style='text-align:right;width:100%'> الأسم بالكامل:</label>
+                <input type="text" 
+                value="<?php echo $row['user_name']?>"
+                style="font-family: 'Cairo', sans-serif;text-align:right;padding:5px">
+              </div>
+
+
+              <div class="col-md-6 dl-mb-10">
+              <label style='text-align:right;width:100%'>رقم الهاتف :</label>
+                <input type="text" 
+                value="<?php echo $row['phone']?>"
+                style="font-family: 'Cairo', sans-serif;text-align:right;padding:5px">
+              </div>
+
+
+
+              <div class="col-md-6 dl-mb-10">
+              <label style='text-align:right;width:100%'>البريد الألكتروني :</label>
+                <input type="text" 
+                value="<?php echo $row['email']?>"
+                style="font-family: 'Cairo', sans-serif;text-align:right;padding:5px">
+              </div>
+
+
+              <div class="col-md-6 dl-mb-10">
+              <label style='text-align:right;width:100%'> تاريخ التسجيل  :</label>
+                <input type="text"  
+                value="<?php echo $row['register_date']?>"
+                style="font-family: 'Cairo', sans-serif;text-align:right;padding:5px">
+              </div>
+
+              <div class="col-md-12 dl-mb-10">
+              <label style='text-align:right;width:100%'> الخطة الحالية  :</label>
+                <input type="text"  style="font-family: 'Cairo', sans-serif;text-align:right;padding:5px">
+              </div>
+
+              
+              <div class="col-md-6 dl-mb-10">
+              <label style='text-align:right;width:100%'> تاريخ الأشتراك  :</label>
+                <input type="text"  style="font-family: 'Cairo', sans-serif;text-align:right;padding:5px">
+              </div>
+
+
+                 
+              <div class="col-md-6 dl-mb-10">
+              <label style='text-align:right;width:100%'> تاريخ الأنتهاء  :</label>
+                <input type="text"  style="font-family: 'Cairo', sans-serif;text-align:right;padding:5px">
+              </div>
+              </div>
+
+              <div >
+                <button style="padding: 10px;">تعديل بيانات الحساب</button>
+              </div>
+            </div>
+          </div>
+        </form>
+</section>
+ 
+    <!-- Footer start -->
+    <?php include 'components/footer.php'; ?>
+     <section class="diffrents">
+        <button class="btn-up">
+            <img src="./images/up_arrow.png" style="width:50px;height:50px"/>
+            </button>
+      </section>
+    <!-- Footer end -->
 
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>

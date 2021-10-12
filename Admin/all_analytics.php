@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +51,7 @@ tr:hover {background-color:#2ec66d;}
 </head>
 <body>
  <?php
- include 'side_nav.php';
+ include 'components/sidebar.php';
  ?>
       <div class="container-fluid">
       <table>

@@ -2,24 +2,11 @@
 session_start();
 include '../components/dbconnect.php';
 ?>
-<?php
-$id = $_GET['id'];
-$cmd = "select * from articles where article_id = '$id'";
-$result=mysqli_query($con,$cmd);
-$article = mysqli_fetch_array($result);
-?>
-
-<?php
-$alert_visible = 0;
-if(isset($_GET['updated']))
-{
-    $alert_visible = 1;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -53,36 +40,7 @@ if(isset($_GET['updated']))
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
- <style>
-    p {
-        color: #0a6ebd;
-        font-weight: bold;
-        font-size: 20px
-    }
 
-    .alert {
-        padding: 20px;
-        background-color: green;
-        color: white;
-        opacity: 0.5;
-
-    }
-
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .closebtn:hover {
-        color: black;
-    }
-    </style>
 </head>
 
 <body>
@@ -92,43 +50,24 @@ if(isset($_GET['updated']))
  ?>
     <div class="container-fluid">
         <div style="text-align:center">
-            <form action="edit_report.php" method="POST" enctype="multipart/form-data">
+            <form action="insert_trend.php" 
+            method="POST" enctype="multipart/form-data">
                 <div class="container" style="margin-top:50px">
-      <?php
-if($alert_visible == 1)
-{
-        ?>
-                    <div class="alert">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;
-                        </span>
-                    تم تعديل التقرير بنجااح
-                    </div>
-                    <?php
-}
-?>
+
 
                     <h1 style=" font-family:'Vibes', cursive;
                                 font-family: 'Lemonada', cursive;
                                 font-family: 'Reem Kufi', sans-serif;
                                 text-align:center">
-                        تعديل التقارير
+                                اضافة تحليل الاسهم الأكثر بحثا
                     </h1>
-                    <img id = "article_img" src="<?php echo "./../uploads/".$article['images'] ?>"
-                    style="width:300px;height:200px;margin-bottom:50px; border-radius: 15px;"
-                    />
                     <input type="hidden" name="size" value="1000000">
-                      <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <input type="text" placeholder="أدخل العنوان الرئيسي" name="title" class="form-control"
-                        style="margin-bottom:50px;text-align:right;width:100%" 
-                        value="<?php echo $article['title'];?>">
-                
+                        style="margin-bottom:50px;text-align:right;width:100%">
+                    
                     <textarea id="editor" rows="6" cols="200" name="content" class="form-control"
-                        style="margin-bottom:50px;text-align:right;direction:rtl">
-                        
-                        <?php 
-                        echo $article['content'];
-                        ?>
-                    </textarea>
+                        style="margin-bottom:50px;text-align:right;direction:rtl"></textarea>
+
                     <br>
                     <br>
                     <input type="file" name="image" class="btn btn-success">

@@ -116,15 +116,15 @@ include 'components/navbar.php';
     <div style="padding-top:120px">
     </div>
     <?php
-          $sql="select * from articles order by article_id desc limit 20 ";
+          $sql="select * from trend order by trend_id desc limit 20 ";
           $result = mysqli_query($con,$sql);
           while($row = mysqli_fetch_array($result)){
           ?>
     <div class="row" style="padding:10px;mergin-bottom:10px">
         <div class="col-lg-10 col-md-10 col-sm-10">
             <h2 style="text-align:right;font-family: 'Cairo', sans-serif;color:#1f4e83;">
-                <a href='report_body.php?id=<?php echo $row['article_id'] ?>'>
-                    <?php  echo $row['title']; ?>
+                <a href='trend.php?id=<?php echo $row['trend_id'] ?>'>
+                    <?php  echo $row['title']."_#"; ?>
                 </a>
             </h2>
             <div style="text-align:right;font-family:'Cairo', sans-serif;">
@@ -137,15 +137,15 @@ include 'components/navbar.php';
                 </span>
                 <span style="float:left;color:#1f4e83;">
                     <img src="images/date.png" style="width:25px;">
-                    <?php echo $row['date']; ?>
+                    <?php echo $row['date_added']; ?>
                 </span>
           </div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
             <?php
-            if($row['images'] != null)
+            if($row['thumbnail'] != null)
             {
-              echo '<img src="uploads/'.$row['images'].'" style="width:100%;height:90%;max-height:200px;border: 1px solid #ddd;
+              echo '<img src="uploads/'.$row['thumbnail'].'" style="width:100%;height:90%;max-height:200px;border: 1px solid #ddd;
               border-radius: 4px;">';
             }
             else{

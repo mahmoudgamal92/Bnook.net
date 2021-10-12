@@ -1,5 +1,6 @@
 <?php
-include_once 'components/dbconnect.php'
+session_start();
+include_once 'components/dbconnect.php';
 ?>
 <?php
 $total_views;
@@ -178,7 +179,7 @@ else
 <body>
   <div class="header">
     <div class="layout">
-      <?php include 'navbar.php'; ?>
+      <?php include 'components/navbar.php'; ?>
       <div class="slider" style="z-index:1;height:100vh">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="height:100%">
           <ol class="carousel-indicators">
@@ -392,12 +393,8 @@ else
             </div>
       <!-- Section Get in touch start -->
       </section>
-      <?php include 'footer.php'; ?>
-      <section class="diffrents">
-        <button class="btn-up">
-            <img src="./images/up_arrow.png" style="width:50px;height:50px"/>
-            </button>
-      </section>
+      <?php include 'components/footer.php'; ?>
+    
       <!-- Footer end -->
 
       <script>

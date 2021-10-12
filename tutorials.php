@@ -2,6 +2,12 @@
 session_start();
 include_once 'components/dbconnect.php';
 ?>
+<?php
+// $user_id = $_SESSION['user_id'];
+// $cmd = "select * from users where id = '$user_id'";
+// $result = mysqli_query($con,$cmd);
+// $row = mysqli_fetch_array($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +33,7 @@ include_once 'components/dbconnect.php';
     <link href="https://fonts.googleapis.com/css?family=Acme|Allan&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lemonada|Reem+Kufi|Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
+
     <!----------------google font arabic--------------->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
@@ -45,8 +52,6 @@ include_once 'components/dbconnect.php';
 
     * {
         font-family: Greta_Arabic !important;
-          text-decoration: none !important;
-
     }
 
     .leftcolumn {
@@ -109,60 +114,97 @@ include_once 'components/dbconnect.php';
     <div class="header">
         <div class="layout">
             <?php
-include 'components/navbar.php';
+      include 'components/navbar.php';
      ?>
         </div>
     </div>
-    <div style="padding-top:120px">
-    </div>
-    <?php
-          $sql="select * from articles order by article_id desc limit 20 ";
-          $result = mysqli_query($con,$sql);
-          while($row = mysqli_fetch_array($result)){
-          ?>
-    <div class="row" style="padding:10px;mergin-bottom:10px">
-        <div class="col-lg-10 col-md-10 col-sm-10">
-            <h2 style="text-align:right;font-family: 'Cairo', sans-serif;color:#1f4e83;">
-                <a href='report_body.php?id=<?php echo $row['article_id'] ?>'>
-                    <?php  echo $row['title']; ?>
+      <section class="contact dl-pt-150">
+          <h2 class="text-center h1" style="
+          font-family: 'Harmattan', sans-serif;
+          font-family: 'Lalezar', cursive;
+          font-family: 'Mada', sans-serif;
+          font-family: 'Changa', sans-serif;
+          color:  #00e6ac ;">
+      الدورات التدريبية
+          </h2>
+</section>
+
+
+<section class="container courses my-5 rtl" style="display:block">
+
+
+<div style="">  
+
+        <p style="text-align:center;margin-top:20px;margin-bottom:50px">
+            سيتم اطلاق الدورات التدريبية الخاصة بموقع بنوك نت قريبا جدا ..... انتظرونا
+        </p>
+       
+     <lottie-player src="https://assets1.lottiefiles.com/datafiles/bEYvzB8QfV3EM9a/data.json"  background="transparent"  speed="1"  
+style="width: '100%'; height: 200px;"  loop autoplay></lottie-player> 
+
+</div>
+        <!-- <div class="row">
+            <div
+                class="col-lg-4 col-md-6 col-12 mb-5 course position-relative d-flex justify-content-center hvr-float wow fadeInUp rtl text-right"
+                data-wow-delay="0.25s">
+                <div class="w-95 p-3 bg-white shadow d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="course-img mb-3" style="height: 400px;">
+                            <a href="shop.php" class="h-100 d-block position-relative bgi" style="background-image: url('https://dryosefalhasany.com/uploads/books/64/images/runing_empty.jpg');">
+                            </a>
+                        </div>
+                        <div class="course-title my-2">
+                            <a href="shop.php">
+                              عنوان الكتاب
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="course-description position-relative text-small">
+                            <p>
+                            وصف الكتاب  وصف الكتاب  وصف الكتاب  وصف الكتاب  وصف الكتاب  وصف الكتاب  وصف الكتاب  وصف الكتاب  وصف الكتاب 
+                            </p>
+                            <a href="shop.php">
+                               عرض المزيد
+                            </a>
+                            <span class="course-price px-3 py-1 text-center bg-main-green text-white">
+                               30 sr
+                            </span>
+                        </div>
+                        <div class="course-footer d-flex justify-content-between pt-3 border-top mt-3">
+                            <div class="">
+                                <span class="icon ml-1">
+                                    <img src="images/eye.png" style="width:20px">
+                                </span>
+                                <span> 2813</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+         
+            <div class="col-12 d-flex justify-content-center">
+                <a href="shop.php" class="btn text-white btn-custom px-4 ml-3 hvr-ripple-out">
+                    <?php echo $lang['view_more'];?>
                 </a>
-            </h2>
-            <div style="text-align:right;font-family:'Cairo', sans-serif;">
-                <?php echo htmlspecialchars_decode(substr($row['content'],0,600)); ?>
-                <?php //echo $row['subtitle']; ?>
-                <br>
-                <span style="color:grey">
-                    <a href='report_body.php?id=<?php echo $row['article_id'] ?>'>
-                        .....أضغط لعرض المزيد</a>
-                </span>
-                <span style="float:left;color:#1f4e83;">
-                    <img src="images/date.png" style="width:25px;">
-                    <?php echo $row['date']; ?>
-                </span>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <?php
-            if($row['images'] != null)
-            {
-              echo '<img src="uploads/'.$row['images'].'" style="width:100%;height:90%;max-height:200px;border: 1px solid #ddd;
-              border-radius: 4px;">';
-            }
-            else{
-          echo '<img src="images/bnookbanner.png" 
-          style="width:100%;border-radius:15px;">';
 
-            }
-            ?>
-        </div>
-    </div>
-    <?php 
-              } 
-              ?>
-<?php
-include 'components/footer.php';
-?>
+            </div>
+        </div> -->
+    </section>
+ 
+    <!-- Footer start -->
+    <?php include 'components/footer.php'; ?>
+     <section class="diffrents">
+        <button class="btn-up">
+            <img src="./images/up_arrow.png" style="width:50px;height:50px"/>
+            </button>
+      </section>
+    <!-- Footer end -->
 
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>

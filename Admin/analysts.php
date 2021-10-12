@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
  if(!isset($_SESSION['Admin_name']))
  {
   header("Location: login.php");
@@ -40,7 +40,7 @@ session_start();
 <body>
 
  <?php
- include 'side_nav.php';
+ include 'components/sidebar.php';
  ?>
 
        <div class="container-fluid">
@@ -50,20 +50,20 @@ session_start();
      <div class="row">
          
       <div class=" col-md-3 problems">
-        <a onclick="window.location.href ='add_usa_analyze.php'">
-        <img src="../images/usa.png" style="width: 50%; height:60%;">
+        <a onclick="window.location.href ='add_analyze.php'">
+        <img src="./images/stock.png" style="width: 50%; height:60%;">
                 <p>
-                   اضافه تحليل للشركات الامريكيه
+                   اضافه تحليل للأسهم
                </p>
         </a>
 
       </div>
       
       <div class=" col-md-3 problems">
-        <a onclick="window.location.href ='add_ksa_analyze.php'">
-        <img src="../images/ksa.png" style="width: 50%; height:60%;">
+        <a onclick="window.location.href ='add_editor.php'">
+        <img src="./images/add.png" style="width: 50%; height:60%;">
        <p>
-           اضافه تحليل للشركات السعوديه
+         أضافة محللين
        </p>
 
         </a>
@@ -73,7 +73,7 @@ session_start();
       
       <div class=" col-md-3 problems">
         <a onclick="window.location.href ='all_analytics.php'">
-        <img src="images/problem.png" style="width: 50%; height:60%;">
+        <img src="images/list.png" style="width: 50%; height:60%;">
        <p>
          جميع التحليلات
        </p>

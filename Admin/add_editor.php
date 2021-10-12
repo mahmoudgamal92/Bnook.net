@@ -1,6 +1,6 @@
 <?php
- include '../DBconnect.php';
- session_start();
+include '../components/dbconnect.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +57,7 @@ if(isset($_POST['editor_name']))
 }
 ?>
  <?php
- include 'side_nav.php'
+ include 'components/sidebar.php'
  ?>
       <div class="container-fluid">
         <div class="row">

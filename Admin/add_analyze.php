@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,7 @@ if (isset($_POST['upload'])) {
   	$target = "../uploads/".basename($image);
   	
     $sql="insert into analyses (analyse_title,analyse_content ,analyse_date ,analyse_image ,analyse_code, company_symbol) 
-    values ('$analyse_title','$analyse_content','$date','$image' ,'ksa','$symbol')";
+    values ('$analyse_title','$analyse_content','$date','$image' ,'usa','$symbol')";
     if (mysqli_query($con,$sql) && move_uploaded_file($_FILES['image']['tmp_name'], $target))
     
     {
@@ -72,12 +72,11 @@ mysqli_close($con);
 ?>
     
 <?php
- include 'side_nav.php';
+ include 'components/sidebar.php';
  ?>
       <div class="container-fluid">
         <div class="row">
-        <form action="add_ksa_analyze.php" method="POST" enctype="multipart/form-data" 
-        style="width:100%;text-align:center">
+        <form action="add_usa_analyze.php" method="POST" enctype="multipart/form-data" style="width:100%;text-align:center">
     <div class="container">
 
  
@@ -85,16 +84,16 @@ mysqli_close($con);
    <h1 style=" font-family:'Vibes', cursive;
        font-family: 'Lemonada', cursive;
           font-family: 'Reem Kufi', sans-serif;text-align:center;color:#218838;margin-top:50px">
-           اضافه تحليلات الشركات السعوديه
+           اضافه تحليلات الشركات الامريكيه
       </h1>
     <input type="hidden" name="size" value="1000000">
-      <input type="text" placeholder="Enter company number like 2010,1010,..  " name="symbol" class="form-control" style="margin-bottom:50px"> 
+      <input type="text" placeholder="Enter the symbol like MSFT,AMZN,.... " name="symbol" class="form-control" style="margin-bottom:50px"> 
       <input type="text" placeholder="Enter the title " name="title" class="form-control" style="margin-bottom:50px"> 
       <textarea rows="6" cols="200" name="analysis-content" class="form-control" style="margin-bottom:50px" ></textarea>
         <input type="file" name="image" class="btn btn-success" style="margin-top:50px">
         <br>
         <br>
-      <button type="submit" class="btn btn-success" name="upload" > submit </button>
+      <button type="submit" class="btn btn-success" name="upload"> submit </button>
   </form>
      
       </div>

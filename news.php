@@ -1,5 +1,6 @@
 <?php
-include_once 'DBconnect.php'
+session_start();
+include_once 'components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +49,7 @@ include_once 'DBconnect.php'
         font-family: Greta_Arabic !important;
     }
 
+
     .leftcolumn {
         float: left;
         width: 75%;
@@ -91,8 +93,6 @@ include_once 'DBconnect.php'
     .reaction:hover {
         transform: scale(1.5);
     }
-
-    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
     @media screen and (max-width: 800px) {
 
         .leftcolumn,
@@ -108,7 +108,7 @@ include_once 'DBconnect.php'
     <div class="header">
         <div class="layout">
             <?php
-include 'navbar.php';
+      include 'components/navbar.php';
      ?>
         </div>
     </div>
@@ -117,16 +117,22 @@ include 'navbar.php';
   <div style='padding:2%'>
     <div class="row" style="padding:10px;mergin-bottom:10px;">
           <?php
-          $sql="select * from news order by id desc ";
+          $sql="select * from news order by id desc limit 24";
           $result = mysqli_query($con,$sql);
           while($row = mysqli_fetch_array($result)){
           ?>
         <div class="col-lg-3 col-md-10 col-sm-12" style="padding:10px;border-radius:10px;">
-            <div style="border:1px solid grey;height:450px;border-radius:10px;box-shadow: 5px 10px 18px #888888;">
+            <div style="border:1px solid grey;
+            height:420px;
+            border-radius:10px;
+            box-shadow: 5px 10px 18px #888888;
+            overflow:hidden;
+            position: relative;
+            ">
             <?php
             if($row['image'] != null)
             {
-              echo '<img src="uploads/'.$row['image'].'" style="width:100%;max-height:200px;border-radius:10px;">';
+              echo '<img src="uploads/'.$row['image'].'" style="width:100%;max-height:200px;">';
             }
             else{
               echo '<img src="images/bnookbanner.png" style="width:100%;max-height:200px;border-radius:10px;">';
@@ -137,12 +143,15 @@ include 'navbar.php';
                     <?php  echo $row['title']; ?>
                 </a>
               </h2> 
-               <h5 style="text-align:left;font-family: 'Cairo', sans-serif;color:green;bottom:0">
-                      <span style="color:#1f4e83;">
+             
+              <div style="bottom:0;position: absolute;">
+               <h5 style="text-align:left;font-family: 'Cairo', sans-serif;color:green;">
+                <span style="color:#1f4e83;">
                     <img src="images/date.png" style="width:25px;">
                     <?php echo $row['date']; ?>
                 </span>
               </h5> 
+        </div>
               
               </div>
          </div>
@@ -153,7 +162,7 @@ include 'navbar.php';
     </div>
  
     <!-- Footer start -->
-    <?php include 'footer.php'; ?>
+    <?php include 'components/footer.php'; ?>
      <section class="diffrents">
         <button class="btn-up">
             <img src="./images/up_arrow.png" style="width:50px;height:50px"/>

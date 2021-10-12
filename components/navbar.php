@@ -36,6 +36,17 @@
                   font-weight: bold;">أراء و تحليلات
                 </a>
             </li>
+
+            <li class="nav-item">
+                <i class="fas fa-atom icon" style="color: #808000"></i>
+                <a class="nav-link color-theme" href="tutorials.php" style="
+                  color:  #008060;
+                  font-family: 'Cairo', sans-serif;
+                  font-weight: bold;">
+                  الدورات التدريبية
+                </a>
+            </li>
+
             <li class="nav-item" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent">
                 <i class="fas fa-atom icon" style="color: #808000"></i>
@@ -61,12 +72,11 @@
 
             <li class="nav-item">
                 <i class="fas fa-atom icon" style="color: #808000"></i>
-                <a onclick="document.getElementById('rating_modal').style.display='block'" class="nav-link color-theme" style="
+                <a href="stocks_trend.php" class="nav-link color-theme" style="
                     color:  #008060;
                     font-family: 'Cairo', sans-serif;
                     font-weight: bold;">
-                    فلتر التقييمات
-
+                   تحليل الأسهم الأكثر بحثاً 
                 </a>
             </li>
 
@@ -85,6 +95,44 @@
                 </a>
             </li>
 
+            <?php
+                                if(isset($_SESSION['user_id']))
+                                {
+                                ?>	
+
+
+               <li>
+            <i class="fas fa-atom icon" style="color: #808000"></i>
+            <div class="dropdown" >
+                <a class="nav-link color-theme" 
+                type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                style="
+                  color:  #008060;
+                  font-family: 'Cairo', sans-serif;
+                  font-weight: bold;">
+
+                  <?php echo "أهلا_".$_SESSION['user_name']; ?>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style='background:#FFF'>
+
+                    <a class="dropdown-item" href="profile.php" style="text-align:center">
+                    الملف الشخصي
+                    </a>
+
+                    <a class="dropdown-item" href="signout.php"  style="text-align:center">
+                    تسجيل الخروج
+                    </a>
+                </div>
+            </div>
+            </li>
+
+                      <?php
+                                }
+                                else
+                                {
+
+                    ?>
             <li>
             <i class="fas fa-atom icon" style="color: #808000"></i>
                 <a class="nav-link color-theme" onclick="document.getElementById('signin_modal').style.display='block'"  style="
@@ -94,6 +142,10 @@
               تسجيل الدخول
                 </a>
             </li>
+
+            <?php
+                                }
+            ?>
 
             <ul class="social">
                 <li>
@@ -128,10 +180,9 @@
          قامت الهيئات الشرعية بإصدار معايير للتعامل بالأسهم ذات ضوابط تتماشى مع تعاليم
         الدين الاسلامي ويتطلب تنفيذ هذه الضوابط جمع البيانات المالية عن تلك الاسهم
         واجراءات الحسابات عليها للتأكد من انها اجتازت تلك الضوابط علماً انه يوجد اختلاف بسيط فالبعض فمثلاً عند حساب القروض  يعتمد على متوسط القيمة السوقية للشركة لآخر ربع وليس القيمة السوقية الحالية كما هو شائع حاليا لدى المتعاملين. بينما اعتمدت بعض الهيئات على إجمالي الأصول عند حساب القروض. وحتى نضمن عدم تعطل الفلتر من المصدر فقد تم تطوير فلترين من مصادر معتمدة أحدهما يحدث أُسْبُوعِيًّا والاخر شهرياً. وفي حال تعطل أحدهما يتم استخدام الآخر.
-
         "
         </p>
-      <form class="w3-container" action="Result.php" method="post">
+      <form class="w3-container" action="filter.php" method="post">
         <div class="w3-section" style="text-align:right;direction:rtl">        
           <input class="w3-input w3-border w3-margin-bottom" type="text" 
           placeholder="أدخل كود الشركة" name="filter_symbol" required

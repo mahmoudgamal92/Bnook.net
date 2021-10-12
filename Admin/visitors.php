@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,18 +49,21 @@ tr:hover {background-color:#2ec66d;}
             
 </style>
 </head>
-
 <body>
-
   <?php
-  include 'side_nav.php';
+  include 'components/sidebar.php';
   ?>
       <div class="container-fluid">
+      <?php
+      $cmd =  "select sum(today_views) as total_views from visitors";
+      $total = mysqli_query($con,$cmd);
+      $total_row = mysqli_fetch_array($total);
+      echo $total_row['total_views'];
+      ?>
       <table>
  <tr>
   <th>date </th> 
   <th>number of website views </th> 
- 
  </tr>
  <?php
   $sql = "SELECT today_views,date FROM visitors ORDER BY date DESC";

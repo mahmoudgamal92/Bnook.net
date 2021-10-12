@@ -1,6 +1,6 @@
 <?php
 session_start();
- include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,73 +29,69 @@ session_start();
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
-  <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+          
+ table {
+border-collapse: collapse;
+margin: 0px auto;
+width: 100%;
+}
+th, td {
+	color : black;
+	font-weight: bold;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align:center;
+}
+            
+</style>
 </head>
 <body>
-
-<?php
-if (isset($_POST['upload'])) {
-    
-    $analyse_title = $_POST['title'];
-    $analyse_content = $_POST["analysis-content"];
-    $date = date("Y/m/d");
-    $symbol = $_POST['symbol'];
-    
-  	// Get image name
-  	$image = $_FILES['image']['name'];
-  	// image file directory
-  	$target = "../uploads/".basename($image);
-  	
-    $sql="insert into analyses (analyse_title,analyse_content ,analyse_date ,analyse_image ,analyse_code, company_symbol) 
-    values ('$analyse_title','$analyse_content','$date','$image' ,'usa','$symbol')";
-    if (mysqli_query($con,$sql) && move_uploaded_file($_FILES['image']['tmp_name'], $target))
-    
-    {
-     ?>
-<script>
-    swal({
-  title: "تم اضافة التحليل بنجاح",
-  text: "You clicked the button!",
-  icon: "success",
-});
-</script>
-
-<?php
-}
-
-else{
-die( "could not insert news right now : ". mysqli_error($con));
-}
-mysqli_close($con);
-}
-?>
-    
-<?php
- include 'side_nav.php';
+ <?php
+ include 'components/sidebar.php';
  ?>
-      <div class="container-fluid">
-        <div class="row">
-        <form action="add_usa_analyze.php" method="POST" enctype="multipart/form-data" style="width:100%;text-align:center">
-    <div class="container">
+  <div class="container">
+      <h5 style="text-align:center;margin-bottom:50px;margin-top:20px">
+      قائمة تحليل الأسهم الأكثر بحثا
+    </h5>
+    
+  <table>
+ <tr>
+  <th>Id</th> 
+  <th>Title</th> 
+  <th>Date</th>
+  <th>Edit</th>
+  <th>Delete</th>
 
- 
- 
-   <h1 style=" font-family:'Vibes', cursive;
-       font-family: 'Lemonada', cursive;
-          font-family: 'Reem Kufi', sans-serif;text-align:center;color:#218838;margin-top:50px">
-           اضافه تحليلات الشركات الامريكيه
-      </h1>
-    <input type="hidden" name="size" value="1000000">
-      <input type="text" placeholder="Enter the symbol like MSFT,AMZN,.... " name="symbol" class="form-control" style="margin-bottom:50px"> 
-      <input type="text" placeholder="Enter the title " name="title" class="form-control" style="margin-bottom:50px"> 
-      <textarea rows="6" cols="200" name="analysis-content" class="form-control" style="margin-bottom:50px" ></textarea>
-        <input type="file" name="image" class="btn btn-success" style="margin-top:50px">
-        <br>
-        <br>
-      <button type="submit" class="btn btn-success" name="upload"> submit </button>
-  </form>
-     
+ </tr>
+
+ <?php 
+  $sql = "select * from trend";
+  $result = $con->query($sql);
+   while($row = $result->fetch_assoc()) {
+     ?>
+ <tr>
+ <td><?php echo $row['trend_id']; ?></td> 
+ <td><?php echo $row['title']; ?></td> 
+ <td><?php echo $row['date_added']; ?></td> 
+ <td>
+   <button class="btn btn-success">
+       <img src="images/edit.png" style="width:30px"/>
+   </button>
+ </td> 
+ <td>
+   <button class="btn btn-info">
+   <img src="images/delete.png" style="width:30px"/>
+
+   </button>
+ </td> 
+
+ </tr>
+<?php
+   }
+   ?>
+   </table>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
@@ -106,9 +102,7 @@ mysqli_close($con);
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script>
-      CKEDITOR.replace( 'analysis-content' );
-     </script>
+
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {

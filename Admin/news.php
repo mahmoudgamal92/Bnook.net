@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../DBconnect.php';
+include '../components/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@ include '../DBconnect.php';
 <body>
 
   <?php
-  include 'side_nav.php'
+  include 'components/sidebar.php'
   ?>
       <div class="container-fluid">
         <div class="row">

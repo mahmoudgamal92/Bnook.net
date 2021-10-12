@@ -2,8 +2,15 @@
 session_start();
 include_once 'components/dbconnect.php';
 ?>
+<?php
+$id = $_GET['id'];
+$cmd = "select * from trend where trend_id = '$id'";
+$result = mysqli_query($con,$cmd);
+$row = mysqli_fetch_array($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dl.helper.css">
@@ -27,6 +34,7 @@ include_once 'components/dbconnect.php';
     <link href="https://fonts.googleapis.com/css?family=Acme|Allan&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lemonada|Reem+Kufi|Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
+
     <!----------------google font arabic--------------->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
@@ -45,8 +53,6 @@ include_once 'components/dbconnect.php';
 
     * {
         font-family: Greta_Arabic !important;
-          text-decoration: none !important;
-
     }
 
     .leftcolumn {
@@ -66,6 +72,8 @@ include_once 'components/dbconnect.php';
     .fakeimg {
         width: 100%;
         padding: 20px;
+        text-align:center;
+        
     }
 
     /* Add a card effect for articles */
@@ -102,6 +110,9 @@ include_once 'components/dbconnect.php';
             padding: 0;
         }
     }
+    a{
+        color:blue;
+    }
     </style>
 </head>
 
@@ -112,56 +123,42 @@ include_once 'components/dbconnect.php';
 include 'components/navbar.php';
      ?>
         </div>
+
     </div>
     <div style="padding-top:120px">
     </div>
-    <?php
-          $sql="select * from articles order by article_id desc limit 20 ";
-          $result = mysqli_query($con,$sql);
-          while($row = mysqli_fetch_array($result)){
-          ?>
-    <div class="row" style="padding:10px;mergin-bottom:10px">
-        <div class="col-lg-10 col-md-10 col-sm-10">
-            <h2 style="text-align:right;font-family: 'Cairo', sans-serif;color:#1f4e83;">
-                <a href='report_body.php?id=<?php echo $row['article_id'] ?>'>
-                    <?php  echo $row['title']; ?>
-                </a>
+
+
+    <section>
+        <div class="card">
+            <h2 style="text-align:right;font-family: 'Cairo', sans-serif;color:#0a6ebd;font-weight:bold">
+                <?php  echo $row['title']; ?>
             </h2>
-            <div style="text-align:right;font-family:'Cairo', sans-serif;">
-                <?php echo htmlspecialchars_decode(substr($row['content'],0,600)); ?>
-                <?php //echo $row['subtitle']; ?>
-                <br>
-                <span style="color:grey">
-                    <a href='report_body.php?id=<?php echo $row['article_id'] ?>'>
-                        .....أضغط لعرض المزيد</a>
-                </span>
-                <span style="float:left;color:#1f4e83;">
-                    <img src="images/date.png" style="width:25px;">
-                    <?php echo $row['date']; ?>
-                </span>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
             <?php
-            if($row['images'] != null)
+            if($row['thumbnail'] != null)
             {
-              echo '<img src="uploads/'.$row['images'].'" style="width:100%;height:90%;max-height:200px;border: 1px solid #ddd;
-              border-radius: 4px;">';
+              echo '<div class="fakeimg"><img src="uploads/'.$row['thumbnail'].'" 
+              style="width:80%;border-radius:5px;"></div>';
             }
             else{
-          echo '<img src="images/bnookbanner.png" 
-          style="width:100%;border-radius:15px;">';
-
+          echo '<div class="fakeimg"><img src="images/bnookbanner.png" 
+          style="width:80%;border-radius:15px;height:250px"></div>';
             }
             ?>
+            <div style="text-align:right;direction:rtl;font-size:20px">
+                  <?php echo htmlspecialchars_decode($row['content']); ?>
+
+            <h5 style="color:green;
+                    font-family:'Cairo', sans-serif;">
+                <img src="images/date.png" style="width:25px">
+                <?php echo $row['date_added']; ?>
+            </h5>
         </div>
-    </div>
-    <?php 
-              } 
-              ?>
-<?php
-include 'components/footer.php';
-?>
+    </section>
+
+    <?php
+    include 'components/footer.php';
+    ?>
 
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>

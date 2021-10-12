@@ -2,15 +2,25 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">
-     <p>  Bnook Admin Panel</p> 
-      </div>
+    
       <div class="list-group list-group-flush" style="text-align: center;">
         <a href="index.php" class="list-group-item list-group-item-action bg-light"><img src="../images/logo.png" style="width: 80%;"></a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">المستخدمين</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">الزوار</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">المقالات</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">تواصل الزوار</a>
+
+        <a href="#" class="list-group-item list-group-item-action bg-light">
+          المستخدمين
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">
+          الزوار
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">
+          التقارير
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">
+       المحللين
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">
+       خدمة العملاء
+        </a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->

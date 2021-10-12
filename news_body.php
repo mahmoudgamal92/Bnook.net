@@ -1,8 +1,7 @@
 <?php
-include_once 'DBconnect.php'
+session_start();
+include_once 'components/dbconnect.php';
 ?>
-
-
 <?php
 $id = $_GET['id'];
 $cmd = "select * from news where id = '$id'";
@@ -74,7 +73,6 @@ $row = mysqli_fetch_array($result);
         width: 100%;
         padding: 20px;
         text-align:center;
-        
     }
 
     /* Add a card effect for articles */
@@ -121,22 +119,27 @@ $row = mysqli_fetch_array($result);
     <div class="header">
         <div class="layout">
             <?php
-include 'navbar.php';
+include 'components/navbar.php';
      ?>
         </div>
     </div>
     <div style="padding-top:120px">
     </div>
     <section>
-        <div class="card">
+        <div class="container-fluid">
             <h2 style="text-align:right;font-family: 'Cairo', sans-serif;color:#0a6ebd;font-weight:bold">
                 <?php  echo $row['title']; ?>
             </h2>
             <?php
             if($row['image'] != null)
             {
-              echo '<div class="fakeimg"><img src="uploads/'.$row['image'].'" 
-              style="border-radius:15px;max-heigh:500px;"></div>';
+             ?>
+             <div class="container">
+             <img src="uploads/<?php echo $row['image']?>" 
+             style="width:100%;border-radius:5px"
+              >
+            </div>
+             <?php
             }
             else{
           echo '<div class="fakeimg"><img src="./images/bnookbanner.png" 
@@ -154,34 +157,7 @@ include 'navbar.php';
     </section>
 
     <!-- Footer start -->
-    <footer class="dl-pt-50 text-center">
-        <a href="#"><img src="./images//logo.png" alt=""></a>
-        <ul class="list-unstyled dl-mt-20">
-            <li>
-                <a href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-        </ul>
-        <p>©2019 BNOOK - All right reserved | Designed by BNOOK Team, CompanyNumber: <span>12042949</span></p>
-    </footer>
-    <section class="diffrents">
-        <button class="btn-up"><i class="fas fa-angle-up"></i></button>
-    </section>
+   <?php include 'components/footer.php'; ?>
     <!-- Footer end -->
 
     <script src="js/html5shiv.min.js"></script>

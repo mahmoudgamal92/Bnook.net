@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+include_once 'components/dbconnect.php';
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -53,14 +58,14 @@
     <div class="header">
       <div class="layout">
      <?php
-include 'navbar.php';
+include 'components/navbar.php';
      ?>
 
 
       </div>
     </div>
 
-<div style="width: 100%; text-align: center; padding-top:120px; 
+<div class="container" style="width: 100%; text-align: center; padding-top:120px; 
 padding-right:20px;padding-left:20px">
 <div style="display: inline block;">
     <h1 class="heading">أسعار صرف العملات </h1>
@@ -100,7 +105,7 @@ padding-right:20px;padding-left:20px">
 </div>
 
 
-<div style="width: 100%; text-align: center; padding-top:50px; 
+<div class="container" style="width:100%; text-align: center; padding-top:50px; 
 padding-right:20px;padding-left:20px">
 <div style="display: inline block;">
     <h1 class="heading"> أسعار صرف العملات الرقميه </h1>
@@ -141,12 +146,9 @@ padding-right:20px;padding-left:20px">
     </section>
             <?php
 
-          include 'footer.php';
+          include 'components/footer.php';
           ?>
   
-    <section class="diffrents">
-      <button class="btn-up"><i class="fas fa-angle-up"></i></button>
-  </section>
     <!-- Footer end -->
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>

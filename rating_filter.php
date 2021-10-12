@@ -1,4 +1,8 @@
 <?php
+session_start();
+include_once 'components/dbconnect.php';
+?>
+<?php
 if(!isset($_POST['filter_symbol']))
 {
 header("Location: index.php");
@@ -73,7 +77,7 @@ $json = @file_get_contents($url);
 <body>
     <div class="header">
         <div class="layout">
-            <?php include 'navbar.php'; ?>
+            <?php include 'components/navbar.php'; ?>
         </div>
     </div>
 
@@ -141,12 +145,8 @@ $json = @file_get_contents($url);
     </div>
 
 
-    <?php include 'footer.php'; ?>
-   <section class="diffrents">
-        <button class="btn-up">
-            <img src="./images/up_arrow.png" style="width:50px;height:50px"/>
-            </button>
-      </section>
+    <?php include 'components/footer.php'; ?>
+  
     <!-- Footer end -->
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
